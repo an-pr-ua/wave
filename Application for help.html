@@ -362,7 +362,7 @@
         }
 
         /* delete button */
-        button {
+        #Pat {
             position: absolute;
             top: 8vw;
             left: 37vw;
@@ -374,15 +374,57 @@
             color: white;
             cursor: pointer;
         }
+
+        #send {
+            position: sticky;
+            top: 85vh;
+            left: 70vw;
+            height: 7vw;
+            opacity: 0.7;
+            width: 12vw;
+            border: 0.2vw solid;
+            border-radius: 10px;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+
+        }
+
+
+
+        #adjust {
+            position: sticky;
+            top: 1vw;
+            left: 7vw;
+            padding: 1.5vw 2.5vw;
+            text-decoration: none;
+            border: 0.2vw solid;
+            border-radius: 10px;
+            background-color: red;
+            opacity: 0.7;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 
 </head>
 
 <body>
+    <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> -->
+
 
     <script src="data.js"></script>
 
     <div class="application">
+
+        <a id="adjust" href="" class="btn">
+            adjust
+        </a>
+
+        <button id="send" onclick="Delete()">confirm and send</button>
+
+
+
         <div class="page1">
             <div class="string s0">
                 <img id="mainImage" src="https://wavelength.org.uk/wp-content/uploads/2019/04/fightloneliness.png" />
@@ -392,6 +434,7 @@
                         style="font-size: 4vw;font-family: DINRoundProL;top: -5vw;font-weight: 300;">
                     </p>
                 </div>
+
                 <img id="image" src="wave.png" />
             </div>
             <h1>
@@ -462,20 +505,26 @@
                         Notes for eligibility) Please tick
                         all that apply:</span></p>
                 <div class="string s5">
-                    <div class="square s1" style="margin-left: 6vw;">
+                    <div class="square s1">
+                        <!-- <div class="square s1" style="margin-left: 6vw;"> -->
                         <p id="UK_Residency_Status-BritishCitizen" class="relative-object" style="left: .5vw;"></p>
                     </div>
                     <p style="margin-right: 2.5vw;">British citizen</p>
-                    <div class="square s1">
-                        <p id="UK_Residency_Status-Refugee" class="relative-object" style="left: .5vw;"></p>
+                    <div class="square s1" style="margin-left: -1vw;">
+                        <p id="UK_Residency_Status-Refugee" class="relative-object" style="left: .5vw;">
+                        </p>
                     </div>
                     <p>Refugee</p>
-                    <div class="square s1" style="margin-left: 5vw;">
+                    <div class="square s1" style="margin-left: 2vw;">
+                        <p id="UK_Residency_Status-SettledStatus" class="relative-object" style="left: .5vw;"></p>
+                    </div>
+                    <p>Settled status</p>
+                    <div class="square s1" style="margin-left: 2vw;">
                         <p id="UK_Residency_Status-Other(pleasestate)" class="relative-object" style="left: .5vw;"></p>
                     </div>
                     <p>Other, please state</p>
                     <hr class="flex">
-                    <p id="wavelengthotherresidencystatusfield" class="relative-object" style="left: 54vw;"></p>
+                    <p id="wavelengthotherresidencystatusfield" class="relative-object" style="left: 56vw;"></p>
                 </div>
                 <div class="string s6">
                     <p class="bold wavelengthaddressfield">Addres</p>
@@ -949,8 +998,9 @@
                     <hr class="flex">
                     <p id="wavelengthreferreremailfield" class="relative-object" style="left: 28vw;"></p>
                 </div>
-                <p class="bold">Referrer&#8217s declaration</p>
-                <p>I declare that the information provided is true to the best of my knowledge and I will inform
+                <p class="bold mt1">Referrer&#8217s declaration</p>
+                <p class="mt1">I declare that the information provided is true to the best of my knowledge and I will
+                    inform
                     WaveLength of any
                     changes in circumstances, such as the applicant&#8217s change of address where reasonably
                     possible.
@@ -971,13 +1021,13 @@
                     <hr class="flex">
                     <p id="wavelengthreferrersigndate" class="relative-object" style="left: 61vw;"></p>
                 </div>
-                <p class="bold">Please tell us how you heard about us</p>
+                <p class="bold mt1">Please tell us how you heard about us</p>
                 <div class="string s35">
                     <div class="square s1">
                         <p id="How_did_you_hear_about_us-Colleague" class="relative-object" style="left: .5vw;"></p>
                     </div>
                     <p class="flex">Colleague</p>
-                    <div class="squar s1">
+                    <div class="square s1">
                         <p id="How_did_you_hear_about_us-Onlinesearch" class="relative-object" style="left: .5vw;">
                         </p>
                     </div>
@@ -1974,15 +2024,19 @@
                 <p>Form updated 12-2023</p>
             </div>
         </div>
-        <button type="button" onclick="Pat()">Pat must <br> push here.</button> //delete
+
+        <button id="Pat" type="button" onclick="Pat()">Pat must <br> push here.</button> //delete
+
+
     </div>
 
     <script>
 
+
         let createElement = {};
         let arrElements = [];
         let arrExceptions = ["Gender", "UK_Region", "Lack_Companionship", "Feeling_Left_Out", "Feeling_isolated", "Feeling_Lonely", "General_Health", "Organisation_Type", "Referrer_UK_Region", "How_did_you_hear_about_us", "Applied_Before", "Accommodation", "Tenant", "Has_the_application_had_equipment_before", "Kit_Wanted", "Existing_Aerial", "TV_Licence", "Live_Alone"]
-        let arrIncorrectElements = ["Existing_Services-Sky", "Existing_Services-Virgin", "Existing_Services-Cable", "Existing_Services-Satellite", "Existing_Services-Paidforstreaming/subscriptionservices", "Existing_Services-Internetaccess", "Current_situation_or_condition-Homeless", "Current_situation_or_condition-Previouslyhomeless", "Current_situation_or_condition-Alzheimers/Dementia", "Current_situation_or_condition-Learningdisability", "Current_situation_or_condition-Agerelatedvulnerabilites(55+)", "Current_situation_or_condition-Addiction/substancemisuse", "Current_situation_or_condition-Domesticabuse", "Current_situation_or_condition-Victimoftorture", "Current_situation_or_condition-Physicalimpairment", "Current_situation_or_condition-Mentalimpairment", "Current_situation_or_condition-Refugee", "Current_situation_or_condition-Youngpeople(16-25)", "UK_Residency_Status-Refugee", "UK_Residency_Status-BritishCitizen", "UK_Residency_Status-Other(pleasestate)", "wavelengthhealthconsent"];
+        let arrIncorrectElements = ["Existing_Services-Sky", "Existing_Services-Virgin", "Existing_Services-Cable", "Existing_Services-Satellite", "Existing_Services-Paidforstreaming/subscriptionservices", "Existing_Services-Internetaccess", "Current_situation_or_condition-Homeless", "Current_situation_or_condition-Previouslyhomeless", "Current_situation_or_condition-Alzheimers/Dementia", "Current_situation_or_condition-Learningdisability", "Current_situation_or_condition-Agerelatedvulnerabilites(55+)", "Current_situation_or_condition-Addiction/substancemisuse", "Current_situation_or_condition-Domesticabuse", "Current_situation_or_condition-Victimoftorture", "Current_situation_or_condition-Physicalimpairment", "Current_situation_or_condition-Mentalimpairment", "Current_situation_or_condition-Refugee", "Current_situation_or_condition-Youngpeople(16-25)", "UK_Residency_Status-Refugee", "UK_Residency_Status-BritishCitizen", "UK_Residency_Status-SettledStatus", "UK_Residency_Status-Other(pleasestate)", "wavelengthhealthconsent"];
         let arrDataForPat = [];  //delete
         let deleteIndex;  //delete
 
@@ -2032,6 +2086,12 @@
         });
 
 
+        function Delete() {
+            document.getElementById("send").style.display = "none";
+            document.getElementById("adjust").style.display = "none";
+        }
+
+
 
         function Pat() {                     //delete all function
             let arrForPat = [];
@@ -2054,6 +2114,15 @@
 
 </body>
 
+<!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script>
+    var doc = new jsPDF();
+    var h1 = document.querySelector(".application");
+    doc.fromHTML(h1, 0, 0);
+    doc.save("output.pdf");
+</script> -->
+
 </html>
 
 <script class="Pats array"> //delete whole array
@@ -2070,7 +2139,7 @@
         ,
         { variable: 'wavelengthdateofbirthfield', value: 54 }
         ,
-        { variable: 'wavelengthotherresidencystatusfield', value: 23 }
+        { variable: 'wavelengthotherresidencystatusfield', value: 21 } // attention Pat it was 23 before
         ,
         { variable: 'wavelengthaddressfield', value: 137 }
         ,
